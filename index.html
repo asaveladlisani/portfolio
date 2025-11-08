@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <title>Asavela Dlisani | Portfolio</title>
 </head>
 
@@ -50,7 +50,81 @@
   </section>
   <!-- End Hero Section  -->
 
-  <div class="background">
+<div class="background">
+
+  <!-- Latest Work Section -->
+  <section id="latest-work">
+    <div class="latest-work container">
+      <div class="projects-header">
+        <h1 class="section-title">SOME OF<span> MY LATEST </span>WORK</h1>
+      </div>
+      <div class="all-projects">
+        <div class="project-card">
+          <div class="project-content">
+            <div class="status-indicators">
+              <span class="status approved"><i class="fa-solid fa-check-circle"></i> Approved</span>
+              <span class="status pending"><i class="fa-solid fa-exclamation-triangle"></i> Pending</span>
+              <span class="status rejected"><i class="fa-solid fa-times-circle"></i> Rejected</span>
+            </div>
+            <div class="alert-box">
+              <i class="fa-solid fa-check-circle"></i>
+              <span>Website submitted</span>
+              <p>You'll be notified if it's accepted</p>
+              <i class="fa-solid fa-times"></i>
+            </div>
+            <div class="controls">
+              <label class="radio-control">
+                <input type="radio" name="option" checked> Radio
+              </label>
+              <label class="checkbox-control">
+                <input type="checkbox" checked> Checkbox
+              </label>
+              <span class="tag">Tag</span>
+            </div>
+            <h1>My Figma design system</h1>
+            <h2>Design system</h2>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-image">
+            <img src="./img/img-2.jpg" alt="My UI design book">
+          </div>
+          <div class="project-content">
+            <h1>My UI design book</h1>
+            <h2>Book</h2>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-content">
+            <div class="betting-card">
+              <div class="match-info">
+                <i class="fa-solid fa-rugby-ball"></i>
+                <span>Canberra vs South Sydney</span>
+                <p>11 May, 8:00PM, 120 markets</p>
+              </div>
+              <div class="odds-container">
+                <div class="team-odds">
+                  <img src="./img/canberra-logo.png" alt="Canberra logo">
+                  <span>Canberra</span>
+                  <span class="odds">1.52</span>
+                </div>
+                <div class="team-odds">
+                  <img src="./img/south-sydney-logo.png" alt="South Sydney logo">
+                  <span>South</span>
+                  <span class="odds">2.32</span>
+                </div>
+              </div>
+            </div>
+            <h1>Creating a lean design system</h1>
+            <h2>Design system</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End Latest Work Section -->
+  <div class="section-separator"></div>
+  
     <!-- Service Section -->
   <section id="services">
     <div class="services container">
@@ -63,30 +137,31 @@
           <div class="icon"><i class="fa-solid fa-code"></i></div>
           <h2>Frontend System Development</h2>
           <p>I design and develop responsive, user-friendly websites using HTML, CSS, and JavaScript to create engaging user experiences.</p>
-          <a href="">Learn more</a>
+          <a href="#">Learn more</a>
         </div>
         <div class="service-item">
           <div class="icon"><i class="fa-solid fa-database"></i></div>
           <h2>Backend Development</h2>
           <p>I offer regular updates, bug fixes, and ongoing support to keep your site functional and secure.</p>
-            <a href="">Learn more</a>
+            <a href="#">Learn more</a>
         </div>
         <div class="service-item">
           <div class="icon"><i class="fa-solid fa-crop"></i></div>
           <h2>GUI Design</h2>
           <p>I design and develop user friendly GUI Applications and ongoing support for more functionalites.</p>
-            <a href="">Learn more</a>
+            <a href="#">Learn more</a>
         </div>
         <div class="service-item">
           <div class="icon"><i class="fa-solid fa-gear"></i></div>
           <h2>DevOps Solutions</h2>
           <p>I help streamline and automate development and IT operations to improve collaboration, reduce deployment times, and ensure continuous integration and delivery (CI/CD).</p>
-            <a href="">Learn more</a>
+            <a href="#">Learn more</a>
         </div>
       </div>
     </div>
   </section>
   <!-- End Service Section -->
+  <div class="section-separator"></div>
 
   <!-- Projects Section -->
   <section id="projects">
@@ -94,75 +169,103 @@
       <div class="projects-header">
         <h1 class="section-title">Recent <span>Projects</span></h1>
       </div>
-      <div class="all-projects">
-        <div class="project-item">
-          <div class="project-info">
-            <h1>Basic Calculator</h1>
-            <h2>Basic Java Project</h2>
-            <p>It is a 'basic' calculator that performs arithmetic operations (addition, subtraction, multiplication, and division) on two numbers entered by the user.</p>
+      <div class="paginated-projects">
+        <div class="all-projects">
+          <div class="project-card">
+            <div class="project-image">
+              <img src="./img/pexels-goumbik-574070.jpg" alt="Basic Calculator">
+            </div>
+            <div class="project-content">
+              <h1>Basic Calculator</h1>
+              <h2>Basic Java Project</h2>
+              <p>It is a 'basic' calculator that performs arithmetic operations (addition, subtraction, multiplication, and division) on two numbers entered by the user.</p>
+              <div class="social-links">
+                <a href="#"><i class="fa-solid fa-globe"></i></a>
+                <a href="#"><i class="fa-brands fa-github"></i></a>
+              </div>
+            </div>
           </div>
-          <div class="project-img">
-            <img src="./img/img-1.png" alt="img">
+          <div class="project-card">
+            <div class="project-image">
+              <img src="./img/pexels-goumbik-574070.jpg" alt="Book Library Management System">
+            </div>
+            <div class="project-content">
+              <h1>Book Library Management System</h1>
+              <h2>Basic Java Project</h2>
+              <p>This system should allow users to manage books and members of the library. The system will require the implementation of various functionalities, including adding new books, searching for books by title or author, registering new members, and checking out books.</p>
+              <div class="social-links">
+                <a href="#"><i class="fa-solid fa-globe"></i></a>
+                <a href="#"><i class="fa-brands fa-github"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="project-card">
+            <div class="project-image">
+              <img src="./img/pexels-goumbik-574070.jpg" alt="Loan Mortgage Calculator">
+            </div>
+            <div class="project-content">
+              <h1>Loan Mortigage Calculator</h1>
+              <h2>C Sharp(#) Project</h2>
+              <p>This is comprehensive mortgage calculator application that will help users estimate their monthly mortgage payments, including the principal and interest over the life of the loan.</p>
+              <div class="social-links">
+                <a href="#"><i class="fa-solid fa-globe"></i></a>
+                <a href="#"><i class="fa-brands fa-github"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="project-card">
+            <div class="project-image">
+              <img src="./img/pexels-goumbik-574070.jpg" alt="Virtual Zoo Management System">
+            </div>
+            <div class="project-content">
+              <h1>Virtual Zoo Management System</h1>
+              <h2>C Sharp(#) Project</h2>
+              <p>The system allows the addition, tracking, and interaction with various types of animals, showcasing the principles of inheritance, polymorphism, method overloading, and the use of interfaces.</p>
+              <div class="social-links">
+                <a href="#"><i class="fa-solid fa-globe"></i></a>
+                <a href="#"><i class="fa-brands fa-github"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="project-card">
+            <div class="project-image">
+              <img src="./img/LogAndReg.png" alt="Login and Register Form">
+            </div>
+            <div class="project-content">
+              <h1>Login And Register Form</h1>
+              <h2>Advanced Java Project</h2>
+              <p>This project demonstrates a secure and user-friendly login and registration system built with advanced Java. It includes features like user authentication, password hashing, and session management, providing a robust foundation for web applications.</p>
+              <div class="social-links">
+                <a href="#"><i class="fa-solid fa-globe"></i></a>
+                <a href="#"><i class="fa-brands fa-github"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="project-card">
+            <div class="project-image">
+              <img src="./img/pexels-goumbik-574070.jpg" alt="Task Management Application">
+            </div>
+            <div class="project-content">
+              <h1>Task Management Application</h1>
+              <h2>Advanced Java Project</h2>
+              <p>A comprehensive task management application developed using advanced Java concepts. This system allows users to create, assign, track, and manage tasks efficiently, featuring user roles, due dates, and status updates for improved productivity.</p>
+              <div class="social-links">
+                <a href="#"><i class="fa-solid fa-globe"></i></a>
+                <a href="#"><i class="fa-brands fa-github"></i></a>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="project-item">
-          <div class="project-info">
-            <h1>Book Library Management System</h1>
-            <h2>Basic Java Project</h2>
-            <p>This system should allow users to manage books and members of the library. The system will require the implementation of various functionalities, including adding new books, searching for books by title or author, registering new members, and checking out books.</p>
-          </div>
-          <div class="project-img">
-            <img src="./img/img-1.png" alt="img">
-          </div>
-        </div>
-        <div class="project-item">
-          <div class="project-info">
-            <h1>Loan Mortigage Calculator</h1>
-            <h2>C Sharp(#) Project</h2>
-            <p>This is comprehensive mortgage calculator application that will help users estimate their monthly mortgage payments, including the principal and interest over the life of the loan.</p>
-          </div>
-          <div class="project-img">
-            <img src="./img/img-1.png" alt="img">
-          </div>
-        </div>
-        <div class="project-item">
-          <div class="project-info">
-            <h1>Virtual Zoo Management System</h1>
-            <h2>C Sharp(#) Project</h2>
-            <p>The system allows the addition, tracking, and interaction with various types of animals, showcasing the principles of inheritance, polymorphism, method overloading, and the use of interfaces.</p>
-          </div>
-          <div class="project-img">
-            <img src="./img/img-1.png" alt="img">
-          </div>
-        </div>
-        <div class="project-item">
-          <div class="project-info">
-            <h1>Login And Register Form</h1>
-            <h2>Advanced Java Project</h2>
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ad, iusto cupiditate voluptatum impedit unde
-              rem ipsa distinctio illum quae mollitia ut, accusantium eius odio ducimus illo neque atque libero non sunt
-              harum? Ipsum repellat animi, fugit architecto voluptatum odit et!</p>
-          </div>
-          <div class="project-img">
-            <img src="./img/img-1.png" alt="img">
-          </div>
-        </div>
-        <div class="project-item">
-          <div class="project-info">
-            <h1>Task Management Application</h1>
-            <h2>Advanced Java Project</h2>
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ad, iusto cupiditate voluptatum impedit unde
-              rem ipsa distinctio illum quae mollitia ut, accusantium eius odio ducimus illo neque atque libero non sunt
-              harum? Ipsum repellat animi, fugit architecto voluptatum odit et!</p>
-          </div>
-          <div class="project-img">
-            <img src="./img/img-1.png" alt="img">
-          </div>
+        <div class="pagination-controls">
+          <button id="prev-page">Previous</button>
+          <div id="page-numbers"></div>
+          <button id="next-page">Next</button>
         </div>
       </div>
     </div>
   </section>
   <!-- End Projects Section -->
+  <div class="section-separator"></div>
 
   
   <!-- About Section -->
@@ -178,9 +281,9 @@
         <h2>Full Stack Developer</h2>
         <p>I started with a strong foundation in IT System Development and discovered a love for web development.Teaching myself front-end skills like HTML, CSS, and JavaScript has been an exciting journey, and My passion lies in solving business problems through programming and developing solutions that automate tasks, improve workflows, and deliver value. I’m now ready to contribute to real-world projects and grow into a full-stack developer.</p>
         <div class="tab-titles">
-            <p class="tab-links active-link" onclick="opentab('skills')">Skills</p>
-            <p class="tab-links" onclick="opentab('experience')">Experience</p>
-            <p class="tab-links" onclick="opentab('education')">Education</p>
+            <p class="tab-links active-link" data-tab="skills">Skills</p>
+            <p class="tab-links" data-tab="experience">Experience</p>
+            <p class="tab-links" data-tab="education">Education</p>
         </div>
         <div class="tab-contents active-tab" id="skills">
             <ul>
@@ -207,6 +310,7 @@
     </div>
   </section>
   <!-- End About Section -->
+  <div class="section-separator"></div>
 
   <!-- Contact Section -->
   <div id="contact">
@@ -217,10 +321,10 @@
                 <p><i class="fa-solid fa-envelope"></i>asaveladlisani5@gmail.com</p>
                 <p><i class="fa-solid fa-phone"></i>060 414 6737</p>
                 <div class="social-icons">
-                    <a href=""><i class="fa-brands fa-facebook"></i></a>
-                    <a href=""><i class="fa-brands fa-whatsapp"></i></a>
-                    <a href=""><i class="fa-brands fa-instagram"></i></a>
-                    <a href=""><i class="fa-brands fa-youtube"></i></a>
+                    <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-youtube"></i></a>
                 </div>
                 <a href="./documents/Asavela Dlisani CV.pdf" class="cta color-button" download>Download CV</a>
             </div>
@@ -236,7 +340,6 @@
         </div>
     </div>
   </div>
-  <!-- End Contact Section -->
 
   </div>
   
@@ -267,22 +370,6 @@
   <!-- End Footer -->
 
   <!-- JavaScript -->
-  <script>
-    var tablinks = document.getElementsByClassName("tab-links");
-    var tabcontents = document.getElementsByClassName("tab-contents");
-  
-    function opentab(tabname) {
-      for (var tablink of tablinks) {
-        tablink.classList.remove("active-link");
-      }
-      for (var tabcontent of tabcontents) {
-        tabcontent.classList.remove("active-tab");
-      }
-      document.getElementById(tabname).classList.add("active-tab");
-      event.currentTarget.classList.add("active-link");
-    }
-  </script>
   <script src="./app.js"></script>
 </body>
-<!--I have a strong foundation in IT Systems Development (NQF Level 5) and hands-on experience in front-end web development. Through self-learning, I’ve built projects that showcase my skills in HTML, CSS, and JavaScript, with tools like GitHub and Azure for version control. I’m passionate about problem-solving, learning new technologies, and building systems that are both efficient and user-friendly. My goal is to grow into a full-stack developer and contribute to creating innovative solutions.-->
 </html>
