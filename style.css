@@ -763,11 +763,17 @@ form input, form textarea{
 	}
 	/* End Services Section */
 
-	/* Project */
+	/* Latest Work */
+	/* #latest-work .project-card {
+		flex-basis: 45%;
+		max-width: 350px;
+	} */
+	/* End Latest Work */
 	/* Project */
 	#projects .project-card {
 		flex-direction: row;
 		max-width: 800px;
+		transition: transform 0.3s ease, box-shadow 0.3s ease;
 	}
 
 	#projects .project-image {
@@ -857,11 +863,11 @@ form input, form textarea{
 		flex-basis: 22%;
 		margin: 1.5%;
 	}
-
-	/* Project */
-	#projects .project-card {
-		max-width: 1000px;
-	}
-	/* End Project */
+	/* Latest Work */
+	/* #latest-work .project-card {
+		flex-basis: 30%;
+		max-width: 380px;
+	} */
+	/* End Latest Work */
 }
 /* End  Media Query For Desktop */
