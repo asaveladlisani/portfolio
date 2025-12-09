@@ -764,10 +764,10 @@ form input, form textarea{
 	/* End Services Section */
 
 	/* Latest Work */
-	/* #latest-work .project-card {
+	#latest-work .project-card {
 		flex-basis: 45%;
 		max-width: 350px;
-	} */
+	}
 	/* End Latest Work */
 	/* Project */
 	#projects .project-card {
