@@ -24,78 +24,97 @@ menu_item.forEach((item) => {
 	});
 });
 
-// Pagination for Projects
-const projectCards = document.querySelectorAll('#projects .project-card');
-const prevButton = document.getElementById('prev-page');
-const nextButton = document.getElementById('next-page');
-const pageNumbersDiv = document.getElementById('page-numbers');
+// ===============================
+// PROJECTS PAGINATION
+// ===============================
+const projects = document.querySelectorAll(".all-projects .project-card");
+const prevBtn = document.getElementById("prev-page");
+const nextBtn = document.getElementById("next-page");
+const pageNumbersContainer = document.getElementById("page-numbers");
 
-if (projectCards.length > 0) {
-	const itemsPerPage = 2;
-	let currentPage = 1;
+let currentPage = 1;
+let itemsPerPage = getItemsPerPage();
+let totalPages = Math.ceil(projects.length / itemsPerPage);
 
-	function displayProjects(page) {
-		const startIndex = (page - 1) * itemsPerPage;
-		const endIndex = startIndex + itemsPerPage;
-
-		projectCards.forEach((card, index) => {
-			card.style.display = (index >= startIndex && index < endIndex) ? 'flex' : 'none';
-		});
-	}
-
-	function setupPagination() {
-		const pageCount = Math.ceil(projectCards.length / itemsPerPage);
-		if (pageNumbersDiv) {
-			pageNumbersDiv.innerHTML = '';
-
-			for (let i = 1; i <= pageCount; i++) {
-				const pageNumberButton = document.createElement('button');
-				pageNumberButton.classList.add('page-number');
-				pageNumberButton.textContent = i;
-				pageNumberButton.addEventListener('click', () => {
-					currentPage = i;
-					displayProjects(currentPage);
-					updatePaginationControls();
-				});
-				pageNumbersDiv.appendChild(pageNumberButton);
-			}
-		}
-	}
-
-	function updatePaginationControls() {
-		const pageNumbers = document.querySelectorAll('.page-number');
-		pageNumbers.forEach((button, index) => {
-			button.classList.toggle('active', index + 1 === currentPage);
-		});
-
-		if (prevButton) prevButton.disabled = currentPage === 1;
-		if (nextButton) nextButton.disabled = currentPage === Math.ceil(projectCards.length / itemsPerPage);
-	}
-
-	if (prevButton) {
-		prevButton.addEventListener('click', () => {
-			if (currentPage > 1) {
-				currentPage--;
-				displayProjects(currentPage);
-				updatePaginationControls();
-			}
-		});
-	}
-
-	if (nextButton) {
-		nextButton.addEventListener('click', () => {
-			if (currentPage < Math.ceil(projectCards.length / itemsPerPage)) {
-				currentPage++;
-				displayProjects(currentPage);
-				updatePaginationControls();
-			}
-		});
-	}
-
-	displayProjects(currentPage);
-	setupPagination();
-	updatePaginationControls();
+// Determine number of projects per page based on screen width
+function getItemsPerPage() {
+  return window.innerWidth < 768 ? 1 : 2; // 1 for mobile, 2 for tablet+
 }
+
+// Display projects based on page
+function showProjects(page) {
+  const start = (page - 1) * itemsPerPage;
+  const end = start + itemsPerPage;
+
+  projects.forEach((project, index) => {
+    project.style.display = index >= start && index < end ? "flex" : "none";
+  });
+}
+
+// Render page numbers (max 3 visible at a time)
+function renderPageNumbers(page) {
+  pageNumbersContainer.innerHTML = "";
+
+  let startPage = page - 1;
+  let endPage = page + 1;
+
+  if (startPage < 1) {
+    startPage = 1;
+    endPage = Math.min(3, totalPages);
+  }
+
+  if (endPage > totalPages) {
+    endPage = totalPages;
+    startPage = Math.max(1, totalPages - 2);
+  }
+
+  for (let i = startPage; i <= endPage; i++) {
+    const btn = document.createElement("button");
+    btn.innerText = i;
+    if (i === page) btn.classList.add("active-page");
+    btn.addEventListener("click", () => {
+      currentPage = i;
+      updatePagination();
+    });
+    pageNumbersContainer.appendChild(btn);
+  }
+}
+
+// Update both projects and pagination numbers
+function updatePagination() {
+  showProjects(currentPage);
+  renderPageNumbers(currentPage);
+  prevBtn.disabled = currentPage === 1;
+  nextBtn.disabled = currentPage === totalPages;
+}
+
+// Prev/Next buttons
+prevBtn.addEventListener("click", () => {
+  if (currentPage > 1) {
+    currentPage--;
+    updatePagination();
+  }
+});
+
+nextBtn.addEventListener("click", () => {
+  if (currentPage < totalPages) {
+    currentPage++;
+    updatePagination();
+  }
+});
+
+// Update pagination on window resize
+window.addEventListener("resize", () => {
+  itemsPerPage = getItemsPerPage();
+  totalPages = Math.ceil(projects.length / itemsPerPage);
+  currentPage = 1; // Reset to first page on resize
+  updatePagination();
+});
+
+// Initial display
+updatePagination();
+
+
 
 // Tab functionality for About section
 const tablinks = document.querySelectorAll(".tab-links");
