@@ -160,7 +160,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Tunable timing values (ms)
-    const SLIDE_INTERVAL = 2800; // time between auto slides
+    const SLIDE_INTERVAL = 3000; // time between auto slides
     const TRANSITION_MS = 3000; // animation duration for slide transition
 
     let visible = getVisibleCount();
