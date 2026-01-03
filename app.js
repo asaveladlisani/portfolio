@@ -136,3 +136,122 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 });
+
+// ===============================
+// CERTIFICATIONS CAROUSEL
+// Auto-slide horizontal carousel that shows up to 3 cards depending on screen size
+// ===============================
+document.addEventListener('DOMContentLoaded', () => {
+    const certSection = document.querySelector('#certifications');
+    if (!certSection) return;
+
+    const viewport = certSection.querySelector('.cert-viewport');
+    const track = certSection.querySelector('.cert-track');
+    if (!viewport || !track) return;
+
+    const cards = Array.from(track.querySelectorAll('.cert-card'));
+    if (!cards.length) return;
+
+    function getVisibleCount() {
+        const w = window.innerWidth;
+        if (w < 600) return 1;
+        if (w < 900) return 2;
+        return 3;
+    }
+
+    // Tunable timing values (ms)
+    const SLIDE_INTERVAL = 2800; // time between auto slides
+    const TRANSITION_MS = 3000; // animation duration for slide transition
+
+    let visible = getVisibleCount();
+    let intervalId = null;
+
+    // apply transition duration to CSS variable so animation matches JS timing
+    certSection.style.setProperty('--cert-transition-duration', `${TRANSITION_MS}ms`);
+    track.style.transitionDuration = `${TRANSITION_MS}ms`;
+
+    function refreshSizes() {
+        visible = getVisibleCount();
+        const gap = parseFloat(getComputedStyle(track).gap) || 24;
+        const vw = viewport.clientWidth;
+        // Calculate pixel width for each card so 1/2/3 fit exactly
+        const cardWidth = Math.floor((vw - gap * (visible - 1)) / visible);
+        // update all card sizes (query to include any new cards)
+        const currentCards = Array.from(track.querySelectorAll('.cert-card'));
+        currentCards.forEach(card => {
+            card.style.flex = `0 0 ${cardWidth}px`;
+            card.style.maxWidth = `${cardWidth}px`;
+        });
+        // Always reset transform to zero (we maintain order by moving nodes)
+        track.style.transition = 'none';
+        track.style.transform = `translateX(0)`;
+        // force reflow then restore transition
+        void track.offsetWidth;
+        track.style.transition = `transform ${TRANSITION_MS}ms cubic-bezier(.22,.9,.36,1)`;
+    }
+
+    function next() {
+        visible = getVisibleCount();
+        const gap = parseFloat(getComputedStyle(track).gap) || 24;
+        const vw = viewport.clientWidth;
+        const cardWidth = Math.floor((vw - gap * (visible - 1)) / visible);
+        const totalCards = track.querySelectorAll('.cert-card').length;
+        if (totalCards <= visible) return; // nothing to slide
+
+        // Animate one card-width to the left
+        track.style.transition = `transform ${TRANSITION_MS}ms cubic-bezier(.22,.9,.36,1)`;
+        track.style.transform = `translateX(-${cardWidth + gap}px)`;
+
+        // After transition, move the first card to the end and reset transform
+        const onTransitionEnd = () => {
+            track.removeEventListener('transitionend', onTransitionEnd);
+            const first = track.firstElementChild;
+            if (first) track.appendChild(first);
+            // reset transform without animation
+            track.style.transition = 'none';
+            track.style.transform = 'translateX(0)';
+            // force reflow then restore transition
+            void track.offsetWidth;
+            track.style.transition = `transform ${TRANSITION_MS}ms cubic-bezier(.22,.9,.36,1)`;
+        };
+
+        track.addEventListener('transitionend', onTransitionEnd);
+    }
+
+    // Start auto-play only if there are more cards than visible
+        function startAutoPlay() {
+            const totalCards = track.querySelectorAll('.cert-card').length;
+            if (totalCards > visible && !intervalId) {
+                intervalId = setInterval(next, SLIDE_INTERVAL);
+            }
+        }
+
+    function stopAutoPlay() {
+        if (intervalId) {
+            clearInterval(intervalId);
+            intervalId = null;
+        }
+    }
+
+    // Init
+    refreshSizes();
+    startAutoPlay();
+
+    // Pause on hover
+    viewport.addEventListener('mouseenter', stopAutoPlay);
+    viewport.addEventListener('mouseleave', startAutoPlay);
+
+    // Recalculate on resize
+    window.addEventListener('resize', () => {
+        // small debounce
+        clearTimeout(window.__certResizeTimeout);
+        window.__certResizeTimeout = setTimeout(() => {
+            // Reset index if necessary to avoid blank space
+            visible = getVisibleCount();
+            if (index > Math.max(0, cards.length - visible)) index = 0;
+            refreshSizes();
+            stopAutoPlay();
+            startAutoPlay();
+        }, 120);
+    });
+});
