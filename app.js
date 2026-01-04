@@ -59,23 +59,42 @@ document.addEventListener("DOMContentLoaded", () => {
 
         function renderPageNumbers(page) {
             pageNumbersContainer.innerHTML = "";
-            let startPage = page - 1;
-            let endPage = page + 1;
-
-            if (startPage < 1) {
-                startPage = 1;
-                endPage = Math.min(3, totalPages);
+            
+            // If 6 or fewer pages, show all page numbers
+            if (totalPages <= 6) {
+                for (let i = 1; i <= totalPages; i++) {
+                    const btn = document.createElement("button");
+                    btn.innerText = i;
+                    btn.className = "page-number";
+                    if (i === page) btn.classList.add("active");
+                    btn.addEventListener("click", () => {
+                        currentPage = i;
+                        updatePagination();
+                    });
+                    pageNumbersContainer.appendChild(btn);
+                }
+                return;
             }
-
-            if (endPage > totalPages) {
-                endPage = totalPages;
-                startPage = Math.max(1, totalPages - 2);
+            
+            // For more than 6 pages, show a window of 5 pages
+            let startPage = Math.max(1, page - 2);
+            let endPage = Math.min(totalPages, page + 2);
+            
+            // Adjust if we're near the beginning
+            if (startPage === 1) {
+                endPage = Math.min(totalPages, 5);
+            }
+            
+            // Adjust if we're near the end
+            if (endPage === totalPages) {
+                startPage = Math.max(1, totalPages - 4);
             }
 
             for (let i = startPage; i <= endPage; i++) {
                 const btn = document.createElement("button");
                 btn.innerText = i;
-                if (i === page) btn.classList.add("active-page");
+                btn.className = "page-number";
+                if (i === page) btn.classList.add("active");
                 btn.addEventListener("click", () => {
                     currentPage = i;
                     updatePagination();
