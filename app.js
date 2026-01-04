@@ -135,6 +135,20 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
     }
+    // ===============================
+    // SCROLL-TO-TOP BUTTON
+    // ===============================
+    const scrollBtn = document.getElementById('scrollTop');
+    function toggleScrollBtn(){
+        if (!scrollBtn) return;
+        if (window.scrollY > 360) scrollBtn.classList.add('show');
+        else scrollBtn.classList.remove('show');
+    }
+    window.addEventListener('scroll', toggleScrollBtn);
+    toggleScrollBtn();
+    if (scrollBtn){
+        scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    }
 });
 
 // ===============================
@@ -255,3 +269,4 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 120);
     });
 });
+
