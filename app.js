@@ -347,6 +347,8 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { AnimationMixer, Clock } from 'three';
 
+const BASE_URL = window.location.hostname === 'localhost' ? '' : '/portfolio'; // Adjust '/portfolio' if your repo name is different
+
 class Avatar3D {
     constructor(containerId) {
         this.container = document.getElementById(containerId);
@@ -380,7 +382,7 @@ class Avatar3D {
 
     loadAvatar() {
         const loader = new GLTFLoader();
-        loader.load('/models/avatar.glb', gltf => {
+        loader.load(`${BASE_URL}/models/avatar.glb`, gltf => {
             this.avatar = gltf.scene;
             this.avatar.scale.set(1.5, 1.5, 1.5);
             this.avatar.position.set(-0.10, -2.5, 0);
