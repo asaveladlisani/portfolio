@@ -314,7 +314,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     async function sendToBackend(text) {
         try {
-            const res = await fetch('http://localhost:3009/chat', {
+            const backendUrl = window.location.hostname === 'localhost' ? 'http://localhost:3009' : 'https://your-deployed-backend-url.com'; // REPLACE WITH YOUR ACTUAL DEPLOYED BACKEND URL
+            const res = await fetch(`${backendUrl}/chat`, {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({ message: text })
@@ -379,7 +380,7 @@ class Avatar3D {
 
     loadAvatar() {
         const loader = new GLTFLoader();
-        loader.load('./models/avatar.glb', gltf => {
+        loader.load('/models/avatar.glb', gltf => {
             this.avatar = gltf.scene;
             this.avatar.scale.set(1.5, 1.5, 1.5);
             this.avatar.position.set(-0.10, -2.5, 0);
