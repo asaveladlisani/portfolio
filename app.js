@@ -314,7 +314,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     async function sendToBackend(text) {
         try {
-            const backendUrl = window.location.hostname === 'localhost' ? 'http://localhost:3009' : 'https://your-deployed-backend-url.com'; // REPLACE WITH YOUR ACTUAL DEPLOYED BACKEND URL
+            const backendUrl = window.location.hostname === 'localhost' ? 'http://localhost:3009' : 'https://github.com/asaveladlisani/portfolio/tree/main/backend';
             const res = await fetch(`${backendUrl}/chat`, {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
