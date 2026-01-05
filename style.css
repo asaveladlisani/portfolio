@@ -19,6 +19,14 @@ a {
 	align-items: center;
 	justify-content: center;
 }
+
+/* Specific adjustments for the hero section's inner container */
+#hero .hero.container {
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1400px; /* Ensure max-width is applied if needed */
+    padding: 0 50px; /* Maintain padding */
+}
 img {
 	height: 100%;
 	width: 100%;
@@ -251,31 +259,58 @@ p {
 
 /* Hero Section */
 #hero {
-	background-image: url(./img/pexels-goumbik-574070.jpg);
-	background-size: cover;
-	background-position: top center;
-	position: relative;
-	z-index: 1;
+    min-height: 80vh;
+    position: relative;
+    background-image: url(./img/pexels-goumbik-574070.jpg);
+    background-size: cover;
+    background-position: top center;
+    display: flex; /* Re-added flex to parent for centering */
+    align-items: center;
+    justify-content: center;
 }
+
 #hero::after {
-	content: '';
-	position: absolute;
-	left: 0;
-	top: 0;
-	height: 100%;
-	width: 100%;
-	background-color: black;
-	opacity: 0.7;
-	z-index: -1;
+    content: '';
+    position: absolute;
+    top:0; left:0; width:100%; height:100%;
+    background-color: black;
+    opacity: 0.7;
+    z-index: 0;
+}
+
+.hero-content {
+    z-index: 1;
+    max-width: 50%;
+    color: white;
+    padding-right: 20px;
+    text-align: left;
+}
+
+#avatar-container {
+    width: 50%;
+    height: 600px;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 #hero .hero {
 	max-width: 1400px;
 	margin: 0 auto;
 	padding: 0 50px;
-	justify-content: flex-start;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
 }
 #hero h1 {
 	display: block;
+	font-size: 4rem;
+	color: white;
+	white-space: nowrap;
+	overflow: hidden; 
+	/* border-right: 0.2em solid crimson;  */
 	width: fit-content;
 	font-size: 4rem;
 	position: relative;
@@ -286,6 +321,15 @@ p {
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
 	animation: gradientText 4s ease infinite;
+}
+/* blinking cursor */
+@keyframes blink {
+  0%, 100% { border-color: transparent; }
+  50% { border-color: crimson; }
+}
+
+#hero h1.typing {
+  animation: blink 0.7s step-end infinite;
 }
 #hero h1:nth-child(1) {
 	animation-delay: 1s;
@@ -305,7 +349,7 @@ p {
 	left: 0;
 	height: 100%;
 	width: 0;
-	background-color: crimson;
+	/* background-color: crimson; */
 	animation: text_reveal_box 1s ease;
 	animation-delay: 0.5s;
 }

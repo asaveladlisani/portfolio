@@ -7,6 +7,16 @@
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <title>Asavela Dlisani | Portfolio</title>
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "./node_modules/three/build/three.module.js",
+        "three/examples/jsm/loaders/GLTFLoader.js": "./node_modules/three/examples/jsm/loaders/GLTFLoader.js",
+        "three/examples/jsm/controls/OrbitControls.js": "./node_modules/three/examples/jsm/controls/OrbitControls.js",
+        "three/examples/jsm/utils/BufferGeometryUtils.js": "./node_modules/three/examples/jsm/utils/BufferGeometryUtils.js"
+      }
+    }
+  </script>
 </head>
 
 <body>
@@ -36,15 +46,16 @@
   <!-- End Header -->
 
 
-  <!-- Hero Section  -->
+  <!-- Hero Section -->
   <section id="hero">
     <div class="hero container">
-      <div>
-        <h1>Hello, <span></span></h1>
-        <h1>My Name is <span></span></h1>
-        <h1>Asavela <span></span></h1>
-        <a href="#projects" type="button" class="cta">Portfolio</a>
+      <div class="hero-content">
+        <h1><span>Hello,</span></h1>
+        <h1><span>My Name is</span></h1>
+        <h1><span>Asavela </span></h1>
+        <a href="#projects" class="cta">Portfolio</a>
       </div>
+      <div id="avatar-container"></div> <!-- 3D avatar goes here -->
     </div>
   </section>
   <!-- End Hero Section  -->
@@ -232,6 +243,6 @@
   <button id="scrollTop" aria-label="Scroll to top">↑</button>
 
   <!-- JavaScript -->
-  <script src="./app.js"></script>
+  <script src="./app.js" type="module"></script>
 </body>
 </html>
