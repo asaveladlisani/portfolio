@@ -9,25 +9,38 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
+const OPENROUTER_API_KEY = process.env.OPENROUTER_API_KEY;
+const OPENROUTER_API_URL = 'https://openrouter.ai/api/v1/chat/completions';
 
-if (!GEMINI_API_KEY) {
-    console.error('GEMINI_API_KEY not set in environment variables');
+if (!OPENROUTER_API_KEY) {
+    console.error('OPENROUTER_API_KEY not set in environment variables');
 }
 
 app.post('/chat', async (req, res) => {
     const { message } = req.body;
     
-    if (!GEMINI_API_KEY) {
+    if (!OPENROUTER_API_KEY) {
         return res.status(500).json({ reply: 'AI service not configured', emotion: 'sad' });
     }
 
     try {
         const response = await axios.post(
-            `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`,
-            { contents: [{ parts: [{ text: message }] }] }
+            OPENROUTER_API_URL,
+            {
+                model: 'deepseek/deepseek-chat',
+                messages: [{ role: 'user', content: message }],
+                max_tokens: 500
+            },
+            {
+                headers: {
+                    'Authorization': `Bearer ${OPENROUTER_API_KEY}`,
+                    'Content-Type': 'application/json',
+                    'HTTP-Referer': 'https://asaveladlisani.github.io/portfolio',
+                    'X-Title': 'Portfolio AI Chat'
+                }
+            }
         );
-        const reply = response.data?.candidates?.[0]?.content?.parts?.[0]?.text || 'Sorry, I did not understand.';
+        const reply = response.data?.choices?.[0]?.message?.content || 'Sorry, I did not understand.';
         const emotion = 'neutral';
         res.json({ reply, emotion });
     } catch(err) {

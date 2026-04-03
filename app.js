@@ -7,7 +7,7 @@ const BASE_URL = window.location.hostname === 'localhost' || window.location.hos
 
 function getBackendUrl() {
     const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-    return isLocal ? 'http://localhost:3009' : 'https://your-production-backend-url.com';
+    return isLocal ? 'http://localhost:3009' : 'https://portfolio-3qam.onrender.com';
 }
 
 class Avatar3D {
